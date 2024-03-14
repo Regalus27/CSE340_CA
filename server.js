@@ -12,6 +12,7 @@ const app = express();
 const baseController = require("./controllers/baseController");
 const static = require("./routes/static");
 const inventoryRoute = require("./routes/inventoryRoutes.js");
+const utilities = require("./utilities/");
 
 /* ***********************
  * View Engine and Templates
@@ -26,8 +27,28 @@ app.set("layout", "./layouts/layout");
 app.use(static);
 
 // Index Route
-app.get("/", baseController.buildHome);
+app.get("/", utilities.handleErrors(baseController.buildHome));
 app.use("/inv", inventoryRoute);
+
+// File Not Found Route - must be last route in list
+app.use(async (req, res, next) => {
+  next({status: 404, message: 'Page not found.'})
+});
+
+/* ***********************
+* Express Error Handler
+* Place after all other middleware
+*************************/
+app.use(async (err, req, res, next) => {
+  let nav = await utilities.getNav()
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  if(err.status == 404){ message = err.message} else {message = 'Server Error. Sorry.'}
+  res.render("errors/error", {
+    title: err.status || 'Server Error',
+    message,
+    nav
+  })
+})
 
 /* ***********************
  * Local Server Information
