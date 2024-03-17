@@ -55,6 +55,28 @@ Util.buildClassificationGrid = async function(data){
   return grid;
 }
 
+// build html for item view
+Util.buildItemGrid = async function(data) {
+
+  let grid;
+
+  if (data.length > 0) {
+    let v = data[0]; // There should only ever be one.
+
+    grid = `<div id=item_display_div>
+    <img src="${v.inv_image}" alt="Image of ${v.inv_year} ${v.inv_make} ${v.inv_model}">
+    <p>${v.inv_description}</p>
+    <p>Color: ${v.inv_color}</p>
+    <p>Miles: ${new Intl.NumberFormat("en-us").format(v.inv_miles)}</p>
+    <p>Price: $${new Intl.NumberFormat("en-us").format(v.inv_price)}</p>
+    </div>`;
+  } else {
+    grid = `<p>Sorry, no matching vehicle could be found.</p>`;
+  }
+
+  return grid;
+}
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
