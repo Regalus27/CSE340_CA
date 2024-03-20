@@ -82,9 +82,9 @@ Util.buildLoginGrid = function() {
   return `<div id="login_card">
   <form action="">
     <label for="account_email">Email:</label><br>
-    <input type="text" name="account_email" id="account_email"><br>
+    <input type="email" name="account_email" id="account_email"><br>
     <label for="account_password">Password:</label><br>
-    <input type="text" name="account_password" id="account_password"><br>
+    <input type="password" name="account_password" id="account_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{12,}" required><br>
     <input type="submit" value="Submit">
   </form>
   <p>No account? <a href="/account/register/">Sign-up</a></p>
@@ -99,9 +99,10 @@ Util.buildRegisterGrid = function() {
     <label for="account_lastname">Last name:</label><br>
     <input type="text" name="account_lastname" id="account_lastname" required><br>
     <label for="account_email">Email:</label><br>
-    <input type="text" name="account_email" id="account_email" required><br>
-    <label for="account_password">Password, Requires at minimum: 12 characters, 1 capital letter, 1 number, 1 special character</label><br>
-    <input type="text" name="account_password" id="account_password" required><br>
+    <input type="email" name="account_email" id="account_email" required><br>
+    
+    <label for="account_password">Password, Requires at minimum: 12 characters, 1 uppercase letter, 1 lowercase letter, 1 number, 1 special character</label><br>
+    <input type="password" name="account_password" id="account_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{12,}" required><br>
     <input type="submit" value="Register">
   </form>
   </div>`;
