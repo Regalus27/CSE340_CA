@@ -6,7 +6,11 @@ baseController.buildHome = async function(req, res){
 
   req.flash("notice", "This is a flash message.");
 
-  res.render("index", {title: "Home", nav});
+  res.render("index", {
+    title: "Home", 
+    nav,
+    error:
+  });
 }
 
 module.exports = baseController;
