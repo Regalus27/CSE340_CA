@@ -19,6 +19,7 @@ accountController.buildRegistrationPage = async function (req, res, next) {
         title: "Register",
         nav,
         grid,
+        errors: null
     });
 }
 
