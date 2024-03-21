@@ -26,7 +26,7 @@ invCont.buildByItemId = async function(req, res, next) {
     res.render("./inventory/item", {
         title: itemName,
         nav,
-        grid
+        grid,
     });
 }
 

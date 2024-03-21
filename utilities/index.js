@@ -6,7 +6,7 @@ const Util = {}
  ************************** */
 Util.getNav = async function (req, res, next) {
   let data = await invModel.getClassifications();
-  let list = "<ul>";
+  let list = `<ul class="nav_list">`;
   list += '<li><a href="/" title="Home page">Home</a></li>';
   data.rows.forEach((row) => {
     list += "<li>";
@@ -75,6 +75,37 @@ Util.buildItemGrid = async function(data) {
   }
 
   return grid;
+}
+
+// Build Login view TODO
+Util.buildLoginGrid = function() {
+  return `<div id="login_card">
+  <form action="">
+    <label for="account_email">Email:</label><br>
+    <input type="email" name="account_email" id="account_email"><br>
+    <label for="account_password">Password:</label><br>
+    <input type="password" name="account_password" id="account_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{12,}" required><br>
+    <input type="submit" value="Submit">
+  </form>
+  <p>No account? <a href="/account/register/">Sign-up</a></p>
+  </div>`;
+}
+
+Util.buildRegisterGrid = function() {
+  return `<div id="register_card">
+  <form action="/account/register/" method="post">
+    <label for="account_firstname">First name:</label><br>
+    <input type="text" name="account_firstname" id="account_firstname" required><br>
+    <label for="account_lastname">Last name:</label><br>
+    <input type="text" name="account_lastname" id="account_lastname" required><br>
+    <label for="account_email">Email:</label><br>
+    <input type="email" name="account_email" id="account_email" required><br>
+    
+    <label for="account_password">Password, Requires at minimum: 12 characters, 1 uppercase letter, 1 lowercase letter, 1 number, 1 special character</label><br>
+    <input type="password" name="account_password" id="account_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{12,}" required><br>
+    <input type="submit" value="Register">
+  </form>
+  </div>`;
 }
 
 /* ****************************************
