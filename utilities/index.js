@@ -77,10 +77,10 @@ Util.buildItemGrid = async function(data) {
   return grid;
 }
 
-// Build Login view TODO
+// Build Login view
 Util.buildLoginGrid = function() {
   return `<div id="login_card">
-  <form action="">
+  <form action="/account/login" method="post">
     <label for="account_email">Email:</label><br>
     <input type="email" name="account_email" id="account_email"><br>
     <label for="account_password">Password:</label><br>
@@ -89,6 +89,18 @@ Util.buildLoginGrid = function() {
   </form>
   <p>No account? <a href="/account/register/">Sign-up</a></p>
   </div>`;
+}
+
+Util.buildManagementGrid = function() {
+  return `<a href="/inv/new_classification/">Add New Classification</a>`;
+}
+
+Util.buildManagementNewClassificationGrid = function() {
+  return `<form action="/inv/new_classification/" method="post">
+    <label for="classification_name">New Classification Name (No Spaces or Special Characters):</label><br>
+    <input type="text" name="classification_name" id="classification_name" pattern="^[a-zA-Z]+" required><br>
+    <input type="submit" value="Submit">
+  </form>`;
 }
 
 Util.buildRegisterGrid = function() {
